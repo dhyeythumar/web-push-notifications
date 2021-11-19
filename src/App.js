@@ -48,11 +48,12 @@ class App extends Component {
             console.log(
                 "Server worker successfully unregistered now you won't receive any new push notifications!"
             );
-            // this.setState({
-            //     registered_SW: null,
-            //     pushSubscriptionExists: false,
-            // });
-            window.location.reload();
+            this.setState({
+                registered_SW: null,
+                pushSubscriptionExists: false,
+            });
+            alert("To register service worker again refresh the page.");
+            // window.location.reload();
         }
     };
 
