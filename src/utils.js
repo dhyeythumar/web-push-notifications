@@ -28,7 +28,10 @@ const registerServiceWorker = async () => {
 
     // register SW
     state.registered_SW = await navigator.serviceWorker.register(
-        "/push-notification-SW.js"
+        "/web-push-notifications/push-notification-SW.js",
+        {
+            scope: "/web-push-notifications/",
+        }
     );
     console.log("Successfully registered service worker.");
 
