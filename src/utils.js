@@ -65,6 +65,7 @@ const pushReqToServer = (subscription) => {
         method: "POST",
         body: JSON.stringify({
             subscription: subscription,
+            ownerId: process.env.REACT_APP_OWNER_ID
         }),
         headers: {
             "Content-Type": "application/json",

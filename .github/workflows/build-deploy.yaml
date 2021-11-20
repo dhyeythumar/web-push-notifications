@@ -39,6 +39,7 @@ jobs:
                   NODE_ENV: production
                   REACT_APP_PUBLIC_VAPID_KEY: ${{ secrets.REACT_APP_PUBLIC_VAPID_KEY }}
                   REACT_APP_SERVER_URL: ${{ secrets.REACT_APP_SERVER_URL }}
+                  REACT_APP_OWNER_ID: ${{ secrets.REACT_APP_OWNER_ID }}
 
             # - name: Run tests
             #   run: npm run test
