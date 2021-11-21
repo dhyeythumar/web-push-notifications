@@ -31,8 +31,9 @@ class App extends Component {
                     applicationServerKey: this.state.convertedVapidKey,
                     userVisibleOnly: true,
                 });
-            pushReqToServer(newSubscription);
-            this.setState({ pushSubscriptionExists: true });
+
+            const res = await pushReqToServer(newSubscription);
+            if (res === true) this.setState({ pushSubscriptionExists: true });
         } catch (err) {
             if (Notification.permission !== "granted") {
                 alert("Notification permission was not granted!");

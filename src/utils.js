@@ -60,17 +60,29 @@ const registerServiceWorker = async () => {
 };
 
 // sent push notification request to server (Push Notification Server)
-const pushReqToServer = (subscription) => {
-    return fetch(`${process.env.REACT_APP_SERVER_URL}/subscribe`, {
-        method: "POST",
-        body: JSON.stringify({
-            subscription: subscription,
-            ownerId: process.env.REACT_APP_OWNER_ID
-        }),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
+const pushReqToServer = async (subscription) => {
+    try {
+        const res = await fetch(
+            `${process.env.REACT_APP_SERVER_URL}/subscribe`,
+            {
+                method: "POST",
+                // mode: "no-cors",
+                body: JSON.stringify({
+                    subscription: subscription,
+                    ownerId: process.env.REACT_APP_OWNER_ID,
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+        console.log(res);
+        if (res.status === 200) return true;
+        return false;
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
 };
 
 export { urlBase64ToUint8Array, registerServiceWorker, pushReqToServer };
