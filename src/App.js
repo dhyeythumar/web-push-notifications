@@ -1,31 +1,61 @@
 import { Component } from "react";
 
-import { registerServiceWorker, pushReqToServer } from "./utils";
+import {
+    registerServiceWorker,
+    getExistingSubscription,
+    pushReqToServer,
+} from "./utils";
 import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
     state = {
         registered_SW: null,
-        pushSubscriptionExists: false,
+        subscription: null,
         convertedVapidKey: null,
     };
 
     async componentDidMount() {
+        await this.registerSW();
+    }
+
+    registerSW = async () => {
+        if (this.state.registered_SW) return;
+
         const state = await registerServiceWorker();
         this.setState({
             registered_SW: state.registered_SW,
-            pushSubscriptionExists: state.pushSubscriptionExists,
+            subscription: state.existingSubscription,
             convertedVapidKey: state.convertedVapidKey,
         });
-    }
+    };
+
+    unregisterSW = async () => {
+        if (this.state.registered_SW) {
+            await this.state.registered_SW.unregister();
+            this.setState({
+                registered_SW: null,
+                subscription: null,
+            });
+            console.log(
+                `Server worker successfully unregistered now you won't receive any new push notifications!`
+            );
+        }
+    };
 
     subscribeUser = async () => {
-        if (this.state.pushSubscriptionExists || !this.state.registered_SW)
-            return;
+        if (this.state.subscription || !this.state.registered_SW) return;
+
+        const existingSubscription = await getExistingSubscription(
+            this.state.registered_SW
+        );
+        if (existingSubscription)
+            return this.setState({
+                subscription: existingSubscription,
+            });
 
         try {
-            console.log("No subscription found, adding new subscription!");
+            console.log(`No subscription found, adding new subscription!`);
             const newSubscription =
                 await this.state.registered_SW.pushManager.subscribe({
                     applicationServerKey: this.state.convertedVapidKey,
@@ -33,7 +63,8 @@ class App extends Component {
                 });
 
             const res = await pushReqToServer(newSubscription);
-            if (res === true) this.setState({ pushSubscriptionExists: true });
+            if (res === true) this.setState({ subscription: newSubscription });
+            else await newSubscription.unsubscribe();
         } catch (err) {
             if (Notification.permission !== "granted") {
                 alert("Notification permission was not granted!");
@@ -43,18 +74,15 @@ class App extends Component {
         }
     };
 
-    unRegisterSW = async () => {
-        if (this.state.registered_SW) {
-            this.state.registered_SW.unregister();
-            console.log(
-                "Server worker successfully unregistered now you won't receive any new push notifications!"
-            );
+    unsubscribeUser = async () => {
+        if (this.state.subscription) {
+            this.state.subscription.unsubscribe();
             this.setState({
-                registered_SW: null,
-                pushSubscriptionExists: false,
+                subscription: null,
             });
-            alert("To register service worker again refresh the page.");
-            // window.location.reload();
+            console.log(
+                `Successfully unsubscribed now you won't receive any new push notifications!`
+            );
         }
     };
 
@@ -64,27 +92,53 @@ class App extends Component {
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
                     <div className="buttons">
-                        <button
-                            type="button"
-                            onClick={this.subscribeUser}
-                            className="subscribe-button"
-                            disabled={
-                                this.state.pushSubscriptionExists ||
-                                !this.state.registered_SW
-                                    ? true
-                                    : false
-                            }
-                        >
-                            Subscribe to push notifications
-                        </button>
-                        <button
-                            type="button"
-                            onClick={this.unRegisterSW}
-                            className="unregister-button"
-                            disabled={this.state.registered_SW ? false : true}
-                        >
-                            Unregister service worker
-                        </button>
+                        <div className="button-container">
+                            <button
+                                type="button"
+                                onClick={this.registerSW}
+                                className="register-button"
+                                disabled={
+                                    this.state.registered_SW ? true : false
+                                }
+                            >
+                                Register service worker
+                            </button>
+                            <button
+                                type="button"
+                                onClick={this.unregisterSW}
+                                className="unregister-button"
+                                disabled={
+                                    this.state.registered_SW ? false : true
+                                }
+                            >
+                                UnRegister service worker
+                            </button>
+                        </div>
+                        <div className="button-container">
+                            <button
+                                type="button"
+                                onClick={this.subscribeUser}
+                                className="subscribe-button"
+                                disabled={
+                                    this.state.subscription ||
+                                    !this.state.registered_SW
+                                        ? true
+                                        : false
+                                }
+                            >
+                                Subscribe to push notifications
+                            </button>
+                            <button
+                                type="button"
+                                onClick={this.unsubscribeUser}
+                                className="unsubscribe-button"
+                                disabled={
+                                    this.state.subscription ? false : true
+                                }
+                            >
+                                UnSubscribe to push notifications
+                            </button>
+                        </div>
                     </div>
                 </header>
             </div>

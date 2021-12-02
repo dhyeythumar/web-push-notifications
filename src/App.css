@@ -38,22 +38,29 @@
 }
 
 .buttons {
-    margin: 100px auto;
+    margin: 60px auto;
 }
 
+.register-button,
+.unregister-button,
 .subscribe-button,
-.unregister-button {
+.unsubscribe-button {
     padding: 12px;
-    border-radius: 6px;
+    border-radius: 4px;
     background-color: #61dafb;
     color: black;
-    font-size: 16px;
+    font-size: 14px;
     border: 0px;
     cursor: pointer;
 }
 
-.unregister-button {
+.unregister-button,
+.unsubscribe-button {
     margin-left: 20px;
+}
+
+.button-container {
+    margin-top: 20px;
 }
 
 button:disabled,

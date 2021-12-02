@@ -17,23 +17,25 @@ const urlBase64ToUint8Array = (base64String) => {
 const registerServiceWorker = async () => {
     const state = {
         registered_SW: null,
-        pushSubscriptionExists: false,
-        convertedVapidKey: null,
+        existingSubscription: null,
+        convertedVapidKey: urlBase64ToUint8Array(
+            process.env.REACT_APP_PUBLIC_VAPID_KEY
+        ),
     };
 
     if (!("serviceWorker" in navigator)) {
-        alert("Service worker not present on navigator object!");
+        alert("ServiceWorker not present on navigator object!");
         return state;
     }
 
-    // register SW
+    //* register SW
     state.registered_SW = await navigator.serviceWorker.register(
         "/web-push-notifications/push-notification-SW.js",
         {
             scope: "/web-push-notifications/",
         }
     );
-    console.log("Successfully registered service worker.");
+    console.log(`Successfully registered service worker.`);
 
     if (!state.registered_SW.pushManager) {
         alert(
@@ -44,22 +46,22 @@ const registerServiceWorker = async () => {
         return state;
     }
 
-    // check for existing registered_SW
-    const existingSubscription =
-        await state.registered_SW.pushManager.getSubscription();
-    if (existingSubscription !== null) {
-        alert("Existing subscription detected.");
-        state.pushSubscriptionExists = true;
-    }
-
-    state.convertedVapidKey = urlBase64ToUint8Array(
-        process.env.REACT_APP_PUBLIC_VAPID_KEY
+    state.existingSubscription = await getExistingSubscription(
+        state.registered_SW
     );
 
     return state;
 };
 
-// sent push notification request to server (Push Notification Server)
+//* get for existing Subscription
+const getExistingSubscription = async (registered_SW) => {
+    const existingSubscription =
+        await registered_SW.pushManager.getSubscription();
+    if (existingSubscription !== null) alert("Existing subscription detected.");
+    return existingSubscription;
+};
+
+//* sent push notification request to server (Push Notification Server)
 const pushReqToServer = async (subscription) => {
     try {
         const res = await fetch(
@@ -67,16 +69,16 @@ const pushReqToServer = async (subscription) => {
             {
                 method: "POST",
                 // mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify({
                     subscription: subscription,
                     ownerId: process.env.REACT_APP_OWNER_ID,
                 }),
-                headers: {
-                    "Content-Type": "application/json",
-                },
             }
         );
-        console.log(res);
+        // console.log(res.json());
         if (res.status === 200) return true;
         return false;
     } catch (err) {
@@ -85,4 +87,9 @@ const pushReqToServer = async (subscription) => {
     }
 };
 
-export { urlBase64ToUint8Array, registerServiceWorker, pushReqToServer };
+export {
+    urlBase64ToUint8Array,
+    registerServiceWorker,
+    getExistingSubscription,
+    pushReqToServer,
+};
