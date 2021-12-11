@@ -78,7 +78,8 @@ const pushReqToServer = async (subscription) => {
                 }),
             }
         );
-        // console.log(res.json());
+        const parsedData = await res.json();
+        console.log(parsedData);
         if (res.status === 200) return true;
         return false;
     } catch (err) {
