@@ -3,7 +3,7 @@ name: Build & deploy
 on:
     push:
         branches:
-            - main
+            - reactjs
 
 jobs:
     build:
@@ -47,7 +47,7 @@ jobs:
             # Note that GITHUB_TOKEN has no permission to access to external repositories.
             - name: Deploy to gh-pages
               uses: peaceiris/actions-gh-pages@v3
-              if: ${{ github.ref == 'refs/heads/main' }}
+              if: ${{ github.ref == 'refs/heads/reactjs' }}
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: ./build
