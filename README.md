@@ -1,6 +1,6 @@
-<!-- <p align="center">
-    <img alt="logo" src="./assets/wpn-server.svg" width="160"/>
-</p> -->
+<p align="center">
+    <img alt="logo" src="./assets/web-push-notifications-server-transparent.svg" width="90"/>
+</p>
 <h1 align="center">
 Web Push Notifications Server
 </h1>
