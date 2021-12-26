@@ -10,7 +10,6 @@ Simple public server which provides Web Push Notifications service to frontend a
 </h4>
 
 > Note:
->
 > -   Check out the project's [**changelog**](./changelog.md) to know more on how the project is progressing.
 
 <!-- TODO setup & add status page link -->
@@ -21,6 +20,7 @@ Simple public server which provides Web Push Notifications service to frontend a
 -   [Introduction](#introduction)
 -   [Getting Started](#getting-started)
 -   [API Documentation](#api-documentation)
+-   [Frontend Codebase with Demos](#frontend-codebase-with-demos)
 -   [Support the Project](#support-the-project)
 -   [License](#license)
 
@@ -41,7 +41,7 @@ Check out the [**Getting Started**](#getting-started) section right now to set t
 
 -   **Step 2: Setup frontend with which your visitors will send subscribe request**
 
-    > Note
+    > Note:
     > -   Explanation is based on frontend made with React.js, but you can easily replicate for other frameworks.
     > -   Checkout the working frontend [**demo here**](https://dhyeythumar.github.io/web-push-notifications/) & [**codebase here**](https://github.com/dhyeythumar/web-push-notifications/tree/reactjs).
 
@@ -61,6 +61,12 @@ Check out the [**Getting Started**](#getting-started) section right now to set t
 ## API Documentation
 
 **WIP**
+
+## Frontend Codebase with Demos
+
+> List of example codebase with demo showing how to use web push notification feature
+
+-   [React.js codebase](https://github.com/dhyeythumar/web-push-notifications/tree/reactjs) - [Demo](https://dhyeythumar.github.io/web-push-notifications/)
 
 ## Support the Project
 
