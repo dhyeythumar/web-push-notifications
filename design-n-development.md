@@ -16,7 +16,7 @@ Tradeoffs I faced & decisions made while designing & developing this project
 -   It was clear I wanted to store data in the form of nested structure so, **NoSQL DBs** is the way to go. Because getting nested behavior in SQL DB will require a joint operation, which is slower & which might timeout my serverless functions.
 -   Now the challenge is to select a specific DB in NoSQL space. There are tones of options such as **DynamoDB, MongoDB Atlas, FaunaDB, Upstash, Firestore**, etc. I will explain why I rejected these DBs & selected one out of them.
 
-### <p align="center">DBs for serverless applications</p>
+### DBs for serverless applications
 
 > Requirement are multiple connect creation & dropping at scale, eventual consistency & minimal latency
 
@@ -40,7 +40,7 @@ Tradeoffs I faced & decisions made while designing & developing this project
 
 <!--  **Finally, selected MongoDB's free tier for now but, as the project scales, I will switch to DynamoDB as it will provide scalability & low latency to my application. And I am also planning to use Upstash as a caching layer.** -->
 
-### <p align="center">Use-case specific details</p>
+### Use-case specific details
 
 > This discussion is based on my use-case
 
@@ -83,7 +83,7 @@ Tradeoffs I faced & decisions made while designing & developing this project
 
 It's obvious to choose serverless architecture (with microservices if the app is huge) for the high scalability of an application. And my project is APIs-based services, so it made a lot more sense to use this pattern which helps me cater to a huge number of requests at a time & also with low latency.
 
-### <p align="center">Various serverless hosting providers</p>
+### Serverless hosting providers
 
 -   **AWS Lambda:** Won't use it for an open-source project (if my project scales then, will jump ship to this DB).
     -   `Pros:`
@@ -105,3 +105,20 @@ It's obvious to choose serverless architecture (with microservices if the app is
         -   Provides key-value datastore which is also globally available
     -   `Cons:`
         -   Only 10ms of CPU time per request (free tier) 😥
+
+<p align="center">&bull; &bull; &bull;</p>
+
+## Problems and Scope of Improvement
+
+**Problems that one can face with this setup**
+
+-   Making MongoDB Atlas connections faster, serverless friendly & avoiding downtime due to the limited number of connections.
+-   Avoiding cold start of vercel functions (I have observed the cold start time of approximately 2 seconds)
+
+**A potential solution to the above problems**
+
+-   Implementation of connection pooler for MongoDB Atlas which, provides the following advantages:
+    -   Reduces connection overheads
+    -   Improves overall system performance
+    -   Helps in reusing open connections
+    -   Reduces stress on DB cluster
