@@ -10,7 +10,8 @@ Simple public server which provides Web Push Notifications service to frontend a
 </h4>
 
 > Note:
-> -   Check out the project's [**changelog**](./changelog.md) to know more on how the project is progressing.
+> -   Check out the project's [**design & development**](./design-n-development.md) doc to know more on how I designed & developed the project.
+> -   Also check out the project's [**changelog**](./changelog.md) to know more on how the project is progressing.
 
 <!-- TODO setup & add status page link -->
 <!-- > -   Check out the status of the services [**here**](https://github-notifier.statuspage.io/). And do subscribe to stay in the loop with new incidences such as critical system failure or scheduled maintenance as they would be reported over there. -->
@@ -19,7 +20,7 @@ Simple public server which provides Web Push Notifications service to frontend a
 
 -   [Introduction](#introduction)
 -   [Getting Started](#getting-started)
--   [API Documentation](#api-documentation)
+-   [API Documentation](https://documenter.getpostman.com/view/8974666/UVRHi3PB) 
 -   [Frontend Codebase with Demos](#frontend-codebase-with-demos)
 -   [Support the Project](#support-the-project)
 -   [License](#license)
@@ -36,14 +37,14 @@ Check out the [**Getting Started**](#getting-started) section right now to set t
 
 -   **Step 1: Registration**
 
-    -   Register the [Origin](https://developer.mozilla.org/en-US/docs/Glossary/Origin) on which your website is running & you want to enable push notification service. _(for detailed info on registering owner of an origin checkout API documentation)_
+    -   Register the [Origin](https://developer.mozilla.org/en-US/docs/Glossary/Origin) on which your website is running & you want to enable push notification service. _(for detailed info on registering owner of an origin checkout [API documentation](https://documenter.getpostman.com/view/8974666/UVRHi3PB#6fe2dd36-a43c-4e0b-85ad-490d0303b68c))_
     -   After successful registration, store the owner ID & secret safely _**(consider this as your password & don't share it with anyone)**_
 
 -   **Step 2: Setup frontend with which your visitors will send subscribe request**
 
     > Note:
     > -   Explanation is based on frontend made with React.js, but you can easily replicate for other frameworks.
-    > -   Checkout the working frontend [**demo here**](https://dhyeythumar.github.io/web-push-notifications/) & [**codebase here**](https://github.com/dhyeythumar/web-push-notifications/tree/reactjs).
+    > -   Check out the working frontend [**demo here**](https://dhyeythumar.github.io/web-push-notifications/) & [**codebase here**](https://github.com/dhyeythumar/web-push-notifications/tree/reactjs).
 
     -   Add this [push-notification-SW.js](https://github.com/dhyeythumar/web-push-notifications/blob/reactjs/public/push-notification-SW.js) file to your public folder.
     -   Add these [App.js](https://github.com/dhyeythumar/web-push-notifications/blob/reactjs/src/App.js) & [utils.js](https://github.com/dhyeythumar/web-push-notifications/blob/reactjs/src/utils.js) codes to your codebase.
@@ -56,11 +57,7 @@ Check out the [**Getting Started**](#getting-started) section right now to set t
         _**(Use the above REACT_APP_PUBLIC_VAPID_KEY only)**_
 
 -   **Step 3: Sending push notifications to web visitors for your application**
-    -   Send a post request to **`/owner/sendNotification/<your-owner-id-here>`** endpoint along with the data _(for detailed info on sending push notifications checkout API documentation)_
-
-## API Documentation
-
-**WIP**
+    -   Send a post request to **`/owner/sendNotification/<your-owner-id-here>`** endpoint along with the data _(for detailed info on sending push notifications checkout [API documentation](https://documenter.getpostman.com/view/8974666/UVRHi3PB#18d49ecb-a19a-4581-a3c6-19c8d1881f00))_
 
 ## Frontend Codebase with Demos
 
@@ -70,7 +67,7 @@ Check out the [**Getting Started**](#getting-started) section right now to set t
 
 ## Support the Project
 
-If you are using this project and happy with it or just want to encourage me to continue creating stuff, there are few ways you can do it:-
+If you are using this project and happy with it or just want to encourage me to continue creating stuff, there are few ways you can do
 
 -   Starring and sharing the project
 -   Become a maintainer
