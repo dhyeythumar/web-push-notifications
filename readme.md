@@ -6,12 +6,14 @@ Web Push Notifications Server
 </h1>
 
 <h4 align="center">
-Simple public server which provides Web Push Notifications service to frontend applications.
+    Simple public server which provides Web Push Notifications service to frontend applications.
+    <br /><br />
+    <a href="https://rapidapi.com/dhyeythumar/api/web-push-notifications-server/"><img alt="rapidapi-logo" src="https://img.shields.io/badge/Rapid%20API-WPN%20Server-%231D4371?style=for-the-badge&logo=" /></a>
 </h4>
-
+    
 > Note:
-> -   Check out the project's [**design & development**](./design-n-development.md) doc to know more on how I designed & developed the project.
-> -   Also check out the project's [**changelog**](./changelog.md) to know more on how the project is progressing.
+> -   Check the project's [**design & development**](./design-n-development.md) doc to know more on how I designed & developed the project.
+> -   Also check the project's [**changelog**](./changelog.md) to know more on how the project is progressing.
 
 <!-- TODO setup & add status page link -->
 <!-- > -   Check out the status of the services [**here**](https://github-notifier.statuspage.io/). And do subscribe to stay in the loop with new incidences such as critical system failure or scheduled maintenance as they would be reported over there. -->
