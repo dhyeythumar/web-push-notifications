@@ -49,7 +49,6 @@ const registerServiceWorker = async () => {
     state.existingSubscription = await getExistingSubscription(
         state.registered_SW
     );
-
     return state;
 };
 
@@ -83,6 +82,8 @@ const pushReqToServer = async (subscription) => {
         );
         const parsedData = await res.json();
         console.log(parsedData);
+        //! 202 status code is received when request is sent from local host..
+        //!     this means that request is accepted but not acted upon
         if (res.status === 200) return true;
         return false;
     } catch (err) {
