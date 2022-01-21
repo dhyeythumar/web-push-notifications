@@ -1,0 +1,3 @@
+//!     this means that request is accepted but not acted upon
+
+//! 202 status code is received when request is sent from local host..
