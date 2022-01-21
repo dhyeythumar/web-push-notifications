@@ -65,12 +65,15 @@ const getExistingSubscription = async (registered_SW) => {
 const pushReqToServer = async (subscription) => {
     try {
         const res = await fetch(
-            `${process.env.REACT_APP_SERVER_URL}/subscribe`,
+            "https://web-push-notifications-server.p.rapidapi.com/subscribe",
             {
                 method: "POST",
                 // mode: "no-cors",
                 headers: {
                     "Content-Type": "application/json",
+                    "x-rapidapi-host":
+                        "web-push-notifications-server.p.rapidapi.com",
+                    "x-rapidapi-key": process.env.REACT_APP_X_RAPIDAPI_KEY,
                 },
                 body: JSON.stringify({
                     subscription: subscription,
