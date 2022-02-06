@@ -64,15 +64,12 @@ const getExistingSubscription = async (registered_SW) => {
 const pushReqToServer = async (subscription) => {
     try {
         const res = await fetch(
-            "https://web-push-notifications-server.p.rapidapi.com/subscribe",
+            `${process.env.REACT_APP_SERVER_URL}/subscribe`,
             {
                 method: "POST",
                 // mode: "no-cors",
                 headers: {
                     "Content-Type": "application/json",
-                    "x-rapidapi-host":
-                        "web-push-notifications-server.p.rapidapi.com",
-                    "x-rapidapi-key": process.env.REACT_APP_X_RAPIDAPI_KEY,
                 },
                 body: JSON.stringify({
                     subscription: subscription,
@@ -84,7 +81,7 @@ const pushReqToServer = async (subscription) => {
         console.log(parsedData);
         //! 202 status code is received when request is sent from local host..
         //!     this means that request is accepted but not acted upon
-        if (res.status === 200) return true;
+        if (res.status === 200 || res.status === 202) return true;
         return false;
     } catch (err) {
         console.log(err);
