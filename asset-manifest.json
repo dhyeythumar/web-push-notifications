@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/web-push-notifications/static/css/main.029ac2bb.chunk.css",
-    "main.js": "/web-push-notifications/static/js/main.0f2309af.chunk.js",
-    "main.js.map": "/web-push-notifications/static/js/main.0f2309af.chunk.js.map",
+    "main.js": "/web-push-notifications/static/js/main.3f26fe05.chunk.js",
+    "main.js.map": "/web-push-notifications/static/js/main.3f26fe05.chunk.js.map",
     "runtime-main.js": "/web-push-notifications/static/js/runtime-main.2d4c7e8c.js",
     "runtime-main.js.map": "/web-push-notifications/static/js/runtime-main.2d4c7e8c.js.map",
     "static/js/2.a8f391e4.chunk.js": "/web-push-notifications/static/js/2.a8f391e4.chunk.js",
@@ -12,13 +12,13 @@
     "index.html": "/web-push-notifications/index.html",
     "static/css/main.029ac2bb.chunk.css.map": "/web-push-notifications/static/css/main.029ac2bb.chunk.css.map",
     "static/js/2.a8f391e4.chunk.js.LICENSE.txt": "/web-push-notifications/static/js/2.a8f391e4.chunk.js.LICENSE.txt",
-    "static/js/main.0f2309af.chunk.js.LICENSE.txt": "/web-push-notifications/static/js/main.0f2309af.chunk.js.LICENSE.txt",
+    "static/js/main.3f26fe05.chunk.js.LICENSE.txt": "/web-push-notifications/static/js/main.3f26fe05.chunk.js.LICENSE.txt",
     "static/media/logo.42627872.svg": "/web-push-notifications/static/media/logo.42627872.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.2d4c7e8c.js",
     "static/js/2.a8f391e4.chunk.js",
     "static/css/main.029ac2bb.chunk.css",
-    "static/js/main.0f2309af.chunk.js"
+    "static/js/main.3f26fe05.chunk.js"
   ]
 }
