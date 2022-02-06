@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="logo" src="./assets/web-push-notifications-server-transparent.svg" width="90"/>
+    <img alt="logo" src="./assets/web-push-notifications-server.svg" width="90"/>
 </p>
 <h1 align="center">
 Web Push Notifications Server
@@ -9,6 +9,7 @@ Web Push Notifications Server
     Simple public server which provides Web Push Notifications service to frontend applications.
     <br /><br />
     <a href="https://rapidapi.com/dhyeythumar/api/web-push-notifications-server/"><img alt="rapidapi-logo" src="https://img.shields.io/badge/Rapid%20API-WPN%20Server-%231D4371?style=for-the-badge&logo=" /></a>
+    <a href="https://documenter.getpostman.com/view/8974666/UVRHi3PB"><img alt="postman-logo" src="https://img.shields.io/badge/Postman-WPN%20Server%20API%20Doc-%23ff6c37?style=for-the-badge&logo=postman" /></a>
 </h4>
     
 > Note:
@@ -42,7 +43,7 @@ Check out the [**Getting Started**](#getting-started) section right now to set t
     -   Register the [Origin](https://developer.mozilla.org/en-US/docs/Glossary/Origin) on which your website is running & you want to enable push notification service. _(for detailed info on registering owner of an origin checkout [API documentation](https://documenter.getpostman.com/view/8974666/UVRHi3PB#6fe2dd36-a43c-4e0b-85ad-490d0303b68c))_
     -   After successful registration, store the owner ID & secret safely _**(consider this as your password & don't share it with anyone)**_
 
--   **Step 2: Setup frontend with which your visitors will send subscribe request**
+-   **Step 2: Setup frontend web apps too which your visitors will subscribe**
 
     > Note:
     > -   Explanation is based on frontend made with React.js, but you can easily replicate for other frameworks.
