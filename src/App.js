@@ -69,7 +69,7 @@ class App extends Component {
             if (Notification.permission !== "granted") {
                 alert("Notification permission was not granted!");
             } else {
-                alert("Error ocurred while subscribing :: ", err);
+                alert(`[Error ocurred while subscribing] \n${err}`);
             }
         }
     };
