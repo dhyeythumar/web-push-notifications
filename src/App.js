@@ -10,12 +10,55 @@ import "./App.css";
 
 class App extends Component {
     state = {
+        isNotificationAllowed: false,
         registered_SW: null,
         subscription: null,
         convertedVapidKey: null,
     };
 
     async componentDidMount() {
+        // Are Notifications supported in the service worker?
+        if (!("showNotification" in ServiceWorkerRegistration.prototype)) {
+            alert("Notifications aren't supported!");
+            return;
+        }
+        if (!("serviceWorker" in navigator)) {
+            alert("ServiceWorker not present on navigator object!");
+            return;
+        }
+        // Check if push messaging is supported
+        if (!("PushManager" in window)) {
+            alert("Push messaging isn't supported!");
+            return;
+        }
+        // Check the current Notification permission.
+        // If its denied, it's a permanent block until the
+        // user changes the permission
+        console.log("Notification.permission :: ", Notification.permission);
+        if (Notification.permission === "default") {
+            const permissionState = await Notification.requestPermission();
+            console.log(permissionState);
+            this.setState({
+                isNotificationAllowed:
+                    permissionState === "granted" ||
+                    permissionState === "default"
+                        ? true
+                        : false,
+            });
+            if (permissionState === "denied") {
+                alert("Notification permission denied!");
+                return;
+            }
+        } else if (Notification.permission === "denied") {
+            alert("Notification permission denied!");
+            return;
+        } else {
+            //* Notification permission can be in "granted" || "default" state
+            this.setState({
+                isNotificationAllowed: true,
+            });
+        }
+
         await this.registerSW();
     }
 
@@ -66,11 +109,7 @@ class App extends Component {
             if (res === true) this.setState({ subscription: newSubscription });
             else await newSubscription.unsubscribe();
         } catch (err) {
-            if (Notification.permission !== "granted") {
-                alert("Notification permission was not granted!");
-            } else {
-                alert(`[Error ocurred while subscribing] \n${err}`);
-            }
+            alert(`[Error ocurred while subscribing] \n${err}`);
         }
     };
 
@@ -87,59 +126,65 @@ class App extends Component {
     };
 
     render() {
+        let main = (
+            <div>
+                <div className="button-container">
+                    <button
+                        type="button"
+                        onClick={this.registerSW}
+                        className="register-button"
+                        disabled={this.state.registered_SW ? true : false}
+                    >
+                        Register service worker
+                    </button>
+                    <button
+                        type="button"
+                        onClick={this.unregisterSW}
+                        className="unregister-button"
+                        disabled={this.state.registered_SW ? false : true}
+                    >
+                        UnRegister service worker
+                    </button>
+                </div>
+                <div className="button-container">
+                    <button
+                        type="button"
+                        onClick={this.subscribeUser}
+                        className="subscribe-button"
+                        disabled={
+                            this.state.subscription || !this.state.registered_SW
+                                ? true
+                                : false
+                        }
+                    >
+                        Subscribe to push notifications
+                    </button>
+                    <button
+                        type="button"
+                        onClick={this.unsubscribeUser}
+                        className="unsubscribe-button"
+                        disabled={this.state.subscription ? false : true}
+                    >
+                        UnSubscribe to push notifications
+                    </button>
+                </div>
+            </div>
+        );
+
+        if (!this.state.isNotificationAllowed)
+            main = (
+                <div className="notification_not_allowed">
+                    Notification is disabled for this website!
+                    <br />
+                    Allow the notifications & refresh the page.
+                </div>
+            );
+
         return (
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <div className="buttons">
-                        <div className="button-container">
-                            <button
-                                type="button"
-                                onClick={this.registerSW}
-                                className="register-button"
-                                disabled={
-                                    this.state.registered_SW ? true : false
-                                }
-                            >
-                                Register service worker
-                            </button>
-                            <button
-                                type="button"
-                                onClick={this.unregisterSW}
-                                className="unregister-button"
-                                disabled={
-                                    this.state.registered_SW ? false : true
-                                }
-                            >
-                                UnRegister service worker
-                            </button>
-                        </div>
-                        <div className="button-container">
-                            <button
-                                type="button"
-                                onClick={this.subscribeUser}
-                                className="subscribe-button"
-                                disabled={
-                                    this.state.subscription ||
-                                    !this.state.registered_SW
-                                        ? true
-                                        : false
-                                }
-                            >
-                                Subscribe to push notifications
-                            </button>
-                            <button
-                                type="button"
-                                onClick={this.unsubscribeUser}
-                                className="unsubscribe-button"
-                                disabled={
-                                    this.state.subscription ? false : true
-                                }
-                            >
-                                UnSubscribe to push notifications
-                            </button>
-                        </div>
-                    </div>
+                    {main}
                 </header>
             </div>
         );

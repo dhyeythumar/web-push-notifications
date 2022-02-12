@@ -23,11 +23,6 @@ const registerServiceWorker = async () => {
         ),
     };
 
-    if (!("serviceWorker" in navigator)) {
-        alert("ServiceWorker not present on navigator object!");
-        return state;
-    }
-
     //* register SW
     state.registered_SW = await navigator.serviceWorker.register(
         "/web-push-notifications/push-notification-SW.js",
