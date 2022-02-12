@@ -6,13 +6,14 @@ Web Push Notifications Server
 </h1>
 
 <h4 align="center">
-    Simple public server which provides Web Push Notifications service to frontend applications.
+    Simple server which provides Web Push Notifications service to frontend applications.
     <br /><br />
     <a href="https://rapidapi.com/dhyeythumar/api/web-push-notifications-server/"><img alt="rapidapi-logo" src="https://img.shields.io/badge/Rapid%20API-WPN%20Server-%231D4371?style=for-the-badge&logo=" /></a>
     <a href="https://documenter.getpostman.com/view/8974666/UVRHi3PB"><img alt="postman-logo" src="https://img.shields.io/badge/Postman-WPN%20Server%20API%20Doc-%23ff6c37?style=for-the-badge&logo=postman" /></a>
 </h4>
-    
+
 > Note:
+>
 > -   Check the project's [**design & development**](./design-n-development.md) doc to know more on how I designed & developed the project.
 > -   Also check the project's [**changelog**](./changelog.md) to know more on how the project is progressing.
 
@@ -23,8 +24,8 @@ Web Push Notifications Server
 
 -   [Introduction](#introduction)
 -   [Getting Started](#getting-started)
--   [API Documentation](https://documenter.getpostman.com/view/8974666/UVRHi3PB) 
 -   [Frontend Codebase with Demos](#frontend-codebase-with-demos)
+-   [Browser Support](#browser-support)
 -   [Support the Project](#support-the-project)
 -   [License](#license)
 
@@ -46,6 +47,7 @@ Check out the [**Getting Started**](#getting-started) section right now to set t
 -   **Step 2: Setup frontend web apps too which your visitors will subscribe**
 
     > Note:
+    >
     > -   Explanation is based on frontend made with React.js, but you can easily replicate for other frameworks.
     > -   Check out the working frontend [**demo here**](https://dhyeythumar.github.io/web-push-notifications/) & [**codebase here**](https://github.com/dhyeythumar/web-push-notifications/tree/reactjs).
 
@@ -67,6 +69,20 @@ Check out the [**Getting Started**](#getting-started) section right now to set t
 > List of example codebase with demo showing how to use web push notification feature
 
 -   [React.js codebase](https://github.com/dhyeythumar/web-push-notifications/tree/reactjs) - [Demo](https://dhyeythumar.github.io/web-push-notifications/)
+
+## Browser Support
+
+|           Browser           | Web Push Notifications (WPN) Server Support | VAPID Support |
+| :-------------------------: | :-----------------------------------------: | :-----------: |
+|           Chrome            |                  ✓ (v50 +)                  |       ✓       |
+|            Edge             |                  ✓ (v17 +)                  |       ✓       |
+|           Firefox           |                  ✓ (v44 +)                  |       ✓       |
+|   Safari & Safari on iOS    |                      ✗                      |       ✗       |
+|          Opera \*           |                      ✗                      |       ✗       |
+| Samsung Internet Browser \* |                      ✗                      |       ✗       |
+|          Brave \*           |                      ✗                      |       ✗       |
+
+\* Browser is using [GCM/FCM](https://upload.wikimedia.org/wikipedia/commons/1/10/GCM_Architecture.svg) based push notification service which requires a WPN server to set up Firebase cloud messaging service, so this will be only done if there are enough users requesting this feature from the WPN server.
 
 ## Support the Project
 
