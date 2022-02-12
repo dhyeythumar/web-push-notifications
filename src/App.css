@@ -37,34 +37,54 @@
     }
 }
 
-.buttons {
-    margin: 60px auto;
+.button-container {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.register-button,
-.unregister-button,
-.subscribe-button,
-.unsubscribe-button {
+button,
+.notification_not_allowed {
     padding: 12px;
     border-radius: 4px;
     background-color: #61dafb;
     color: black;
-    font-size: 14px;
+    font-size: 12px;
     border: 0px;
     cursor: pointer;
+    margin: 10px;
 }
-
-.unregister-button,
-.unsubscribe-button {
-    margin-left: 20px;
-}
-
-.button-container {
-    margin-top: 20px;
-}
-
 button:disabled,
 button[disabled] {
     cursor: not-allowed;
     background-color: #61dafbbb;
+}
+
+.notification_not_allowed {
+    margin: 60px auto;
+    cursor: default;
+}
+
+@media (min-width: 768px) {
+    .button-container {
+        flex-direction: row;
+        margin-top: 30px;
+    }
+}
+@media (min-width: 1024px) {
+    .button-container {
+        margin-top: 20px;
+    }
+    button,
+    .notification_not_allowed {
+        font-size: 16px;
+    }
+}
+@media (min-width: 1440px) {
+    button,
+    .notification_not_allowed {
+        font-size: 18px;
+    }
 }
