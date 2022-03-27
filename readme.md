@@ -7,10 +7,12 @@ Web Push Notifications Server
 
 <h4 align="center">
     Simple server which provides Web Push Notifications service to frontend applications.
-    <br /><br />
+</h4>
+
+<p align="center">
     <a href="https://rapidapi.com/dhyeythumar/api/web-push-notifications-server/"><img alt="rapidapi-logo" src="https://img.shields.io/badge/Rapid%20API-WPN%20Server-%231D4371?style=for-the-badge&logo=" /></a>
     <a href="https://documenter.getpostman.com/view/8974666/UVRHi3PB"><img alt="postman-logo" src="https://img.shields.io/badge/Postman-WPN%20Server%20API%20Doc-%23ff6c37?style=for-the-badge&logo=postman" /></a>
-</h4>
+</p>
 
 > Note:
 >
